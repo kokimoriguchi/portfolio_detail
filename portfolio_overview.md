@@ -39,6 +39,13 @@
 
 </details>
 
+<details><summary>MVPワイヤーフレーム</summary>
+
+ログイン画面
+<img width="" src="スクリーンショット 2023-05-14 21.45.42.png">
+
+</details>
+
 ### 追加機能
 <details><summary>出勤可能日変更依頼</summary>
 シフト提出者側は基本的には提出したシフトの変更は自由にできないがGitHubのプルリクエストのように変更依頼を出すことができる。<br>管理者側で確認された場合は確定シフトに変更を加えてもらう。
@@ -73,7 +80,7 @@ frontend
 - JavaScript ES6
 - HTML5
 - CSS
-- tailwind もしくは　materialUI
+- tailwindもしくはmaterialUI
 
 infrastructure
 - Docker 23.0.5
