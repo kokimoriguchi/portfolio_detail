@@ -65,7 +65,7 @@ SHIFT PAGESは仮シフト一覧のページに移動
 DECIDED PAGES仮シフト一覧を確定したものが掲載される画面に移動
 <img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/23a65d8d-15e6-59bd-95ff-1c9fb278f4e2.png">
 
-## 管理者画面(仮シフト一覧：SHIFT PAGE)
+## 管理者画面(仮シフト一覧：SHIFT PAGES)
 管理者画面からのみアクセス可能。
 ここにシフト提出されればそのデータに基づいて可能時間を入れていくことができる。
 アルバイトで⚪︎になっている部分はこの日に出勤できる時間があるサイン(ユーザー画面からの送信でこの日付に時間帯記述されている意味)でこの部分をクリックするとプルダウンでその時間帯を指定できる。
@@ -77,12 +77,12 @@ DECIDED PAGES仮シフト一覧を確定したものが掲載される画面に�
 <img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/6fc9bc9b-7835-dd7a-03b9-288a743c92c7.png">
 
 ## ユーザー画面
-下の画面からSHIFT PAGESかDECIDED PAGESに行けるボタンがあり、
+下の画面からUSER SHIFTかDECIDED PAGESに行けるボタンがあり、
 DECIDED PAGESは管理者画面の確定版が見れる。
 SHIFT PAGESは縦型のカレンダーの表示で下記のように表示される。(パソコンではなくケータイでの使用想定)
-日付をクリックするとモーダル表示で出勤時間と退勤時間をプルダウン的に選択できるのでそこで選ぶ。何も選ばれていない日付はデフォルトで×になる。
-<img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/1cbc978b-1a71-144d-faa2-715a0e9a3cf1.png">
-<img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/f4a7f6b2-1d16-1687-1043-ebf44464bbbd.png">
+日付をクリックするとモーダル表示で出勤時間と退勤時間をプルダウン的に選択できるのでそこで選ぶ。何も選ばれていない日付は送信後デフォルトで×になる。
+<img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/bde3177e-29cf-88db-6316-1e2e28167fe1.png">
+<img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/eea6b794-b1eb-7e04-451a-c345201b1bc4.png">
 
 
 </details>
