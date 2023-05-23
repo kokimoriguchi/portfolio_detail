@@ -1,54 +1,73 @@
 # シフト管理アプリ
-## table(first)
+## table(second)
+
 ### employees table
-| column            | date-type  | NULL | key | default | AUTO INCREMENT |
-| ----------------- | ---------- | ---- | --- | ------- | -------------- |
-| id                | INT(11)    | NO   | PK  |         | YES            |
-| employer_name     | CHAR(50)   | NO   |     |         |                |
-| employer_number   | INT(11)    | NO   | UNI |         |                |
-| employer_skill    | CHAR(50)   | YES  |     |         |                |
-| employer_password | BIGINT(20) | NO   | UNI |         |                |
+| column   | date-type  | NULL | key | default | AUTO INCREMENT |
+| -------- | ---------- | ---- | --- | ------- | -------------- |
+| id       | INT(11)    | NO   | PK  |         | YES            |
+| name     | CHAR(50)   | NO   |     |         |                |
+| number   | INT(11)    | NO   | UNI |         |                |
+| password | BIGINT(20) | NO   | UNI |         |                |
 
 ### managers table
-| column           | date-type  | NULL | key | default | AUTO INCREMENT |
-| ---------------- | ---------- | ---- | --- | ------- | -------------- |
-| id               | INT(11)    | NO   | PK  |         | YES            |
-| manager_name     | CHAR(50)   | NO   |     |         |                |
-| manager_number   | INT(11)    | NO   | UNI |         |                |
-| manager_password | BIGINT(20) | NO   | UNI |         |                |
+| column   | date-type  | NULL | key | default | AUTO INCREMENT |
+| -------- | ---------- | ---- | --- | ------- | -------------- |
+| id       | INT(11)    | NO   | PK  |         | YES            |
+| name     | CHAR(50)   | NO   |     |         |                |
+| number   | INT(11)    | NO   | UNI |         |                |
+| password | BIGINT(20) | NO   | UNI |         |                |
 
 ### employer_shift table
-| column      | date-type | NULL | key | default | AUTO INCREMENT |
-| ----------- | --------- | ---- | --- | ------- | -------------- |
-| id          | INT(11)   | NO   | PK  |         | YES            |
-| employer_id | INT(11)   | NO   | FK  |         |                |
-| work_day    | DATE      | YES  |     |         |                |
-| start_time  | TIME      | YES  |     |         |                |
-| finish_time | TIME      | YES  |     |         |                |
+| column        | date-type | NULL | key | default | AUTO INCREMENT |
+| ------------- | --------- | ---- | --- | ------- | -------------- |
+| id            | INT(11)   | NO   | PK  |         | YES            |
+| employer_id   | INT(11)   | NO   | FK  |         |                |
+| shift_data_id | INT(11)   | NO   | FK  |         |                |
 
+### shift_dates table
+| column     | date-type | NULL | key | default | AUTO INCREMENT |
+| ---------- | --------- | ---- | --- | ------- | -------------- |
+| id         | INT(11)   | NO   | PK  |         | YES            |
+| work_day   | DATE      | YES  |     |         |                |
+| start_time | TIME      | YES  |     |         |                |
+| end_time   | TIME      | YES  |     |         |                |
+| type       | CHAR(11)  | YES  |     |         |                |
 
-### all_temporary_shift table
+<!-- ### all_shift table
 | column            | date-type | NULL | key | default | AUTO INCREMENT |
 | ----------------- | --------- | ---- | --- | ------- | -------------- |
 | id                | INT(11)   | NO   | PK  |         | YES            |
 | employer_shift_id | INT(11)   | NO   | FK  |         |                |
 
-### all_decided_shift table
+### decided_shift table
 | column                 | date-type | NULL | key | default | AUTO INCREMENT |
 | ---------------------- | --------- | ---- | --- | ------- | -------------- |
-| id                     | INT(11)   | NO   | PR  |         | YES            |
-| all_temporary_shift_id | INT(11)   | NO   | FK  |         |                |
+| id                     | INT(11)   | NO   | PK  |         | YES            |
+| all_temporary_shift_id | INT(11)   | NO   | FK  |         |                | -->
 
-### category table
-| column        | date-type | NULL | key | default | AUTO INCREMENT |
-| ------------- | --------- | ---- | --- | ------- | -------------- |
-| id            | INT(11)   | NO   | PRI |         | YES            |
-| employer_id   | INT(11)   | NO   | FK  |         |                |
-| category_name | CHAR(11)  | NO   |     |         |                |
+### departments table
+| column      | date-type | NULL | key | default | AUTO INCREMENT |
+| ----------- | --------- | ---- | --- | ------- | -------------- |
+| id          | INT(11)   | NO   | PK  |         | YES            |
+| employer_id | INT(11)   | NO   | FK  |         |                |
+| name        | CHAR(50)  | NO   |     |         |                |
 
-### store_number table
-| column         | date-type | NULL | key | default | AUTO INCREMENT |
-| -------------- | --------- | ---- | --- | ------- | -------------- |
-| id             | INT(11)   | NO   | PRI |         | YES            |
-| store_number   | INT(5)    | NO   |     |         |                |
-| store_password | INT(11)   | NO   | UNI |         |                |
+### skills table
+| column | date-type | NULL | key | default | AUTO INCREMENT |
+| ------ | --------- | ---- | --- | ------- | -------------- |
+| id     | INT(11)   | NO   | PK  |         | YES            |
+| name   | CHAR(50)  | NO   |     |         |                |
+
+### employer_skills table
+| column      | date-type | NULL | key | default | AUTO INCREMENT |
+| ----------- | --------- | ---- | --- | ------- | -------------- |
+| id          | INT(11)   | NO   | PK  |         | YES            |
+| employer_id | INT(11)   | NO   | FK  |         |                |
+| skill_id    | INT(11)   | NO   | FK  |         |                |
+
+### stores table
+| column   | date-type | NULL | key | default | AUTO INCREMENT |
+| -------- | --------- | ---- | --- | ------- | -------------- |
+| id       | INT(11)   | NO   | PRI |         | YES            |
+| number   | INT(5)    | NO   |     |         |                |
+| password | INT(11)   | NO   | UNI |         |                |

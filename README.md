@@ -10,3 +10,6 @@
 
 ## PRD.md
 ブラッシュアップしていく中でこのファイルを仕様書として清書していきます。
+
+## ER
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/feb2adb8-b0eb-16a0-32ec-32ef0fabf853.png">

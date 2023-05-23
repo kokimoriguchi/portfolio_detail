@@ -1,0 +1,65 @@
+@startuml ER
+
+entity "employees" as employees {
+  +-- ID (PK) : INT(11)
+  --
+  name : CHAR(50)
+  number (UNI) : INT(11)
+  password (UNI) : BIGINT(20)
+}
+
+entity "managers" as managers {
+  +-- ID (PK) : INT(11)
+  --
+  name : CHAR(50)
+  number (UNI) : INT(11)
+  password (UNI) : BIGINT(20)
+}
+
+entity "shift_dates" as shift_dates {
+  +-- ID (PK) : INT(11)
+  --
+  work_day : DATE()
+  start_time : TIME()
+  end_time : TIME()
+  type : CHAR(11)
+}
+
+entity "employer_shifts" as employer_shifts {
+  +-- ID (PK) : INT(11)
+  employer_id (FK) : INT(11)
+  shift_data (FK) : INT(11)
+}
+
+entity "departments" as departments {
+  +-- ID (PK) : INT(11)
+  employer_id (FK) : INT(11)
+  name : CHAR(50)
+}
+
+entity "skills" as skills {
+  +-- ID (PK) : INT(11)
+  name : CHAR(50)
+}
+
+entity "employer_skills" as employer_skills {
+  +-- ID (PK) : INT(11)
+  employer_id (FK) : INT(11)
+  skill_id (FK) : INT(11)
+}
+
+entity "stores" as stores {
+  +-- ID (PK) : INT(11)
+  number : INT(5)
+  password (UNI) : INT(11)
+}
+
+stores --{ managers
+managers --{ employees
+employees --{ employer_shifts
+shift_dates -d-{ employer_shifts
+employer_skills --{ employees
+employer_skills --{ skills
+departments --{ employees
+
+@enduml
