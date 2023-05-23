@@ -71,3 +71,4 @@
 | id       | INT(11)   | NO   | PRI |         | YES            |
 | number   | INT(5)    | NO   |     |         |                |
 | password | INT(11)   | NO   | UNI |         |                |
+| name     | CHAR(50)  | NO   |     |         |                |

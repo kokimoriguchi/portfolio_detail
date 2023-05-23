@@ -53,6 +53,7 @@ entity "employer_skills" as employer_skills {
 entity "stores" as stores {
   +-- ID (PK) : INT(11)
   --
+  name : CHAR(50)
   number : INT(5)
   password (UNI) : INT(11)
 }

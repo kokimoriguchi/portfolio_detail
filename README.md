@@ -12,4 +12,5 @@
 ブラッシュアップしていく中でこのファイルを仕様書として清書していきます。
 
 ## ER
+下記テーブルのリレーション示したER図になります。
 <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/ec883a28-e44a-1366-84eb-9be8ad2556e5.png">
