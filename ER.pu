@@ -27,29 +27,32 @@ entity "shift_dates" as shift_dates {
 
 entity "employer_shifts" as employer_shifts {
   +-- ID (PK) : INT(11)
-  employer_id (FK) : INT(11)
-  shift_data (FK) : INT(11)
+  +-- employer_id (FK) : INT(11)
+  +-- shift_data (FK) : INT(11)
 }
 
 entity "departments" as departments {
   +-- ID (PK) : INT(11)
-  employer_id (FK) : INT(11)
+  +-- employer_id (FK) : INT(11)
+  --
   name : CHAR(50)
 }
 
 entity "skills" as skills {
   +-- ID (PK) : INT(11)
+  --
   name : CHAR(50)
 }
 
 entity "employer_skills" as employer_skills {
   +-- ID (PK) : INT(11)
-  employer_id (FK) : INT(11)
-  skill_id (FK) : INT(11)
+  +-- employer_id (FK) : INT(11)
+  +-- skill_id (FK) : INT(11)
 }
 
 entity "stores" as stores {
   +-- ID (PK) : INT(11)
+  --
   number : INT(5)
   password (UNI) : INT(11)
 }
