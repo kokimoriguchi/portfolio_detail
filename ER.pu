@@ -58,12 +58,18 @@ entity "stores" as stores {
   password (UNI) : INT(11)
 }
 
+entity "information" as information {
+  +-- ID (PK) : INT(11)
+  --
+  content : VARCHAR(255)
+}
+
 stores --{ managers
 managers --{ employees
-employees --{ employer_shifts
-shift_dates -d-{ employer_shifts
-employer_skills --{ employees
+employees -l-{ employer_shifts
+shift_dates --{ employer_shifts
+employer_skills -l-{ employees
 employer_skills --{ skills
-departments --{ employees
+departments -u-{ employees
 
 @enduml
