@@ -18,4 +18,4 @@
 ## ER
 
 下記テーブルのリレーション示した ER 図になります。
-<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/8e023fe1-478b-b96a-31d7-121801a5af94.png">
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/eb3b3e5c-cf39-afef-0887-3b68c1b24d30.png">

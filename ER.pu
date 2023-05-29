@@ -2,6 +2,7 @@
 
 entity "employees" as employees {
   +-- ID (PK) : INT(11)
+  +-- manager_id (PK) : INT(11)
   --
   name : CHAR(50)
   number (UNI) : INT(11)
@@ -10,6 +11,7 @@ entity "employees" as employees {
 
 entity "managers" as managers {
   +-- ID (PK) : INT(11)
+  +-- store_id (PK) : INT(11)
   --
   name : CHAR(50)
   number (UNI) : INT(11)
@@ -60,11 +62,12 @@ entity "stores" as stores {
 
 entity "information" as information {
   +-- ID (PK) : INT(11)
+  +-- store_id (FK) : INT(11)
   --
   content : VARCHAR(255)
 }
-
-stores --{ managers
+stores -r-{ information
+stores -d-{ managers
 managers --{ employees
 employees -l-{ employer_shifts
 shift_dates --{ employer_shifts

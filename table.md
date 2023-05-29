@@ -4,18 +4,20 @@
 
 ### employees table
 
-| column   | date-type  | NULL | key | default | AUTO INCREMENT |
-| -------- | ---------- | ---- | --- | ------- | -------------- |
-| id       | INT(11)    | NO   | PK  |         | YES            |
-| name     | CHAR(50)   | NO   |     |         |                |
-| number   | INT(11)    | NO   | UNI |         |                |
-| password | BIGINT(20) | NO   | UNI |         |                |
+| column     | date-type  | NULL | key | default | AUTO INCREMENT |
+| ---------- | ---------- | ---- | --- | ------- | -------------- |
+| id         | INT(11)    | NO   | PK  |         | YES            |
+| manager_id | INT(11)    | NO   | FK  |         |                |
+| name       | CHAR(50)   | NO   |     |         |                |
+| number     | INT(11)    | NO   | UNI |         |                |
+| password   | BIGINT(20) | NO   | UNI |         |                |
 
 ### managers table
 
 | column   | date-type  | NULL | key | default | AUTO INCREMENT |
 | -------- | ---------- | ---- | --- | ------- | -------------- |
 | id       | INT(11)    | NO   | PK  |         | YES            |
+| store_id | INT(11)    | NO   | FK  |         |                |
 | name     | CHAR(50)   | NO   |     |         |                |
 | number   | INT(11)    | NO   | UNI |         |                |
 | password | BIGINT(20) | NO   | UNI |         |                |
@@ -84,7 +86,8 @@
 
 ### information
 
-| column  | date-type    | NULL | key | default | AUTO INCREMENT |
-| ------- | ------------ | ---- | --- | ------- | -------------- |
-| id      | INT(11)      | NO   | PRI |         | YES            |
-| content | VARCHAR(255) |      |     |         |                |
+| column   | date-type    | NULL | key | default | AUTO INCREMENT |
+| -------- | ------------ | ---- | --- | ------- | -------------- |
+| id       | INT(11)      | NO   | PRI |         | YES            |
+| store_id | INT(11)      | NO   | FK  |         |                |
+| content  | VARCHAR(255) |      |     |         |                |
