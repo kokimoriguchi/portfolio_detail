@@ -4,7 +4,7 @@
 
 ### 【シフト管理アプリ】
 
-1. 一言サービスコンセプト（サービスのキャッチコピーを一言で）
+1. 一言サービスコンセプト（サービスのキャッチコピーを一言で）<br />
    毎日のシフトの抜け漏れを防ぐ！！
 
 2. 誰のどんな課題を解決するのか？<br>
@@ -21,10 +21,20 @@
 
 ### 課題と現状
 
-- 月末に大体 1 週間ほどの期間で勤務終了後に少しづつシフト作成している
-- 勤務後の疲労した状態で作成しているので紙の確認もれや、見にくいデータ表示で人の薄い時間帯などが日別で発生している
+#### マネージャーサイド
+
+- 勤務終了後 1-2 週間ほどかけ少しづつシフト作成している(勤務時間外や休日に作成している)
+- アルバイト含めると 40 人を超える従業員のシフトの紙を全て確認する手間
+- A3 の紙に 40 人 1 ヶ月分のシフトが書かれた紙の見ずらさ。
+- そのかみでは見づらいので単日のシフト表(31 枚)を全て印刷し確認している効率の悪さ
 - 紙での提出のないアルバイトに連絡を 1 人づつ取らないといけない
+
+#### スタッフサイド
+
 - 忙しくても紙なので月末までに記述した紙を提出しにこなければならない
+- 確定したシフトは 1 ヶ月分 40 人の名前と出勤日が書かれた A3 で張り出されるので字が小さく見ずらい。
+- 上記に付随して下の欄の名前の人ほど日付と合わせながら見るのが大変。
+- 同じく月の後半になると左側に記述のある自身の名前と合わせて見るのが大変。
 
 ### 技術面と参考リンク
 
@@ -35,16 +45,14 @@ API 通信としては axios 使用予定(これで 1 度データの受け渡�
 下記サイトに感銘を受けプログラミングを学ぶきっかけになった記事なので、大いに参考にしてしまっており良くなければ変更したい。
 [学生の作ったシフトアプリ](https://zenn.dev/pae_26/articles/dba5403eca50f0)
 
-### 疑問
+### メイン機能
 
-- 前回フィードバック会にて「ユーザテーブルのカラムに管理者かどうかを判断するものを持たせそこで判別する様にする。」とアドバイスいただいたのですが、<br/>
-  イメージがわかず、、、どの様なカラムを追加しそのカラムをどのように使用し判別することができる様になるのか知りたい。
-- テーブルにてシフトデータは作成したが、確定シフトテーブルというものを作成するべきなのかどうか。<br/>
-  自分の現在のイメージではマネージャーが確定するたびに確定テーブルに保存されるので必要かと感じている。
-- シフトのデータとしてアルバイトは時間表示だが、社員に関しては独自のタイムテーブルがアルファベットで存在する。(年末年始などの時期はアルバイトもアルファベット表示になる場合もある)<br/>
-  この場合はシフトデータテーブルに NULL 可能のカラムとして追加するべきなのか、もしくはまた別のテーブル作成し別途取得し表示するべきなのか。
+- マネージャー画面とスタッフ画面でログインによる分岐で表示画面およびハンバーガーメニュー内変更
+- マネージャーによるシフトの管理及び確認
+- スタッフによる出勤可能日の提出
+- 確定シフトの確認
 
-<details><summary>機能用件</summary>
+<details><summary>機能用件と比機能用件</summary>
 
 MVP として 1 から 6 までの機能でまずは作成を目標にしています。
 
@@ -73,14 +81,7 @@ MVP として 1 から 6 までの機能でまずは作成を目標にしてい�
 
 </details>
 
-### メイン機能
-
-- マネージャー画面とスタッフ画面でログインによる分岐で表示画面およびハンバーガーメニュー内変更
-- マネージャーによるシフトの管理及び確認
-- スタッフによる出勤可能日の提出
-- 確定シフトの確認
-
-<details><summary>機能説明とワイヤーフレーム</summary>
+<details><summary>ワイヤーフレームとER図</summary>
 
 ~~## ログイン画面~~
 ~~この画面で管理者なのかユーザーなのか判断。~~
@@ -118,7 +119,7 @@ MVP として 1 から 6 までの機能でまずは作成を目標にしてい�
 
 管理者の場合はこの中に create account があり新規スタッフの登録ができる。また仮シフトはハンバーガーメニュー内の SHIFT ボタン押すことで表示して登録等ができる。
 スタッフの場合は request ボタンに変わり変更依頼ができる、また SHIFT ボタンは次月の自身のシフト提出画面に遷移するボタンになっている。
-<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/a6eab35b-947f-19d7-6e60-0396d6397f33.png">
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/bc1ff860-b1a0-3f9a-1e9f-e384c9a53e4e.png">
 
 ## ユーザー画面
 
@@ -130,11 +131,118 @@ MVP として 1 から 6 までの機能でまずは作成を目標にしてい�
 日付内は出勤時間と退勤時間が上下で並ぶ感じで小さめに表記。当日分の予定はカレンダー下に大きく表示する
 <img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/4b37b25b-fbee-45d4-29e8-8d74870dc875.png">
 
+## テーブル
+
+### entity
+
+- 従業員名(employer_name)
+- 管理者名(manager)
+- 管理者番号(manager_number)
+- 従業員パスワード(employer_password)
+- 社員番号(employer_number)
+- 店舗番号(store_number)
+- 店舗パスワード(store_password)
+- 部門(category)
+- 出勤日(work_day)
+- 出勤時間(start_time)
+- 退勤時間(finish_time)
+- 従業員スキル(employer_skill)
+- 変更リクエスト(change_request)
+- お知らせ
+
+### employees table
+
+| column     | date-type  | NULL | key | default | AUTO INCREMENT |
+| ---------- | ---------- | ---- | --- | ------- | -------------- |
+| id         | INT(11)    | NO   | PK  |         | YES            |
+| store_id   | INT(11)    | NO   | FK  |         |                |
+| is_manager | BOOLEAN    | NO   |     |         |                |
+| name       | CHAR(50)   | NO   |     |         |                |
+| number     | INT(11)    | NO   | UNI |         |                |
+| password   | BIGINT(20) | NO   | UNI |         |                |
+
+### employer_shift table
+
+| column        | date-type | NULL | key | default | AUTO INCREMENT |
+| ------------- | --------- | ---- | --- | ------- | -------------- |
+| id            | INT(11)   | NO   | PK  |         | YES            |
+| employer_id   | INT(11)   | NO   | FK  |         |                |
+| shift_data_id | INT(11)   | NO   | FK  |         |                |
+
+### shift_dates table
+
+| column        | date-type | NULL | key | default | AUTO INCREMENT |
+| ------------- | --------- | ---- | --- | ------- | -------------- |
+| id            | INT(11)   | NO   | PK  |         | YES            |
+| work_day      | DATE      | NO   |     |         |                |
+| is_attendance | BOOLEAN   | NO   |     |         |                |
+
+### shift_time table
+
+| column        | date-type | NULL | key | default | AUTO INCREMENT |
+| ------------- | --------- | ---- | --- | ------- | -------------- |
+| shift_date_id | INT(11)   | NO   |     |         |                |
+| start_time    | TIME      | NO   |     |         |                |
+| end_time      | TIME      | NO   |     |         |                |
+
+### approve_month table
+
+| column        | date-type | NULL | key | default | AUTO INCREMENT |
+| ------------- | --------- | ---- | --- | ------- | -------------- |
+| id            | INT(11)   | NO   | PK  |         | YES            |
+| is_approve    | BOOLEAN   | NO   |     |         |                |
+| shift_time_id | INT(11)   | NO   | FK  |         |                |
+
+### departments table
+
+| column      | date-type | NULL | key | default | AUTO INCREMENT |
+| ----------- | --------- | ---- | --- | ------- | -------------- |
+| id          | INT(11)   | NO   | PK  |         | YES            |
+| employer_id | INT(11)   | NO   | FK  |         |                |
+| name        | CHAR(50)  | NO   |     |         |                |
+
+### skills table
+
+| column | date-type | NULL | key | default | AUTO INCREMENT |
+| ------ | --------- | ---- | --- | ------- | -------------- |
+| id     | INT(11)   | NO   | PK  |         | YES            |
+| name   | CHAR(50)  | NO   |     |         |                |
+
+### employer_skills table
+
+| column      | date-type | NULL | key | default | AUTO INCREMENT |
+| ----------- | --------- | ---- | --- | ------- | -------------- |
+| id          | INT(11)   | NO   | PK  |         | YES            |
+| employer_id | INT(11)   | NO   | FK  |         |                |
+| skill_id    | INT(11)   | NO   | FK  |         |                |
+
+### stores table
+
+| column   | date-type | NULL | key | default | AUTO INCREMENT |
+| -------- | --------- | ---- | --- | ------- | -------------- |
+| id       | INT(11)   | NO   | PRI |         | YES            |
+| number   | INT(5)    | NO   |     |         |                |
+| password | INT(11)   | NO   | UNI |         |                |
+| name     | CHAR(50)  | NO   |     |         |                |
+
+### information
+
+| column   | date-type    | NULL | key | default | AUTO INCREMENT |
+| -------- | ------------ | ---- | --- | ------- | -------------- |
+| id       | INT(11)      | NO   | PRI |         | YES            |
+| store_id | INT(11)      | NO   | FK  |         |                |
+| content  | VARCHAR(255) |      |     |         |                |
+
+## ER 図
+
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/43e170b6-4eab-7a43-f911-43e6c1a89510.png">
 </details>
 
 <details><summary>サイトマップ</summary>
 <img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/8a8f00db-69c5-af45-6e63-3dac296afb98.png">
 </details>
+
+<details><summary>追加機能</summary>
 
 ### 追加機能
 
@@ -162,12 +270,20 @@ MVP として 1 から 6 までの機能でまずは作成を目標にしてい�
 - Gpt4 によるシフト最適化<br>
   Gpt4 の API を入れ込み各従業員の出勤可能日が提出され次第管理者画面にて API を叩くボタン設置し各日程の最適人数を当てはめてくれる機能<br><br>
 
+</details>
+
+<details><summary>ディレクトリ構成</summary>
+
 ## ディレクトリ構成
 
 ```
 shift_app ── frontend(react-create-app)
           └── backend(rails new)
 ```
+
+</details>
+
+<details><summary>使用予定技術</summary>
 
 ## 使用予定技術
 
@@ -192,3 +308,5 @@ infrastructure
 database
 
 - MySQL 5.8
+
+</details>

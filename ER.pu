@@ -2,35 +2,47 @@
 
 entity "employees" as employees {
   +-- ID (PK) : INT(11)
-  +-- manager_id (PK) : INT(11)
-  --
-  name : CHAR(50)
-  number (UNI) : INT(11)
-  password (UNI) : BIGINT(20)
-}
-
-entity "managers" as managers {
-  +-- ID (PK) : INT(11)
   +-- store_id (PK) : INT(11)
   --
   name : CHAR(50)
   number (UNI) : INT(11)
   password (UNI) : BIGINT(20)
+  is_manager : BOOLEAN
 }
 
-entity "shift_dates" as shift_dates {
+' entity "managers" as managers {
+'   +-- ID (PK) : INT(11)
+'   --
+'   name : CHAR(50)
+'   number (UNI) : INT(11)
+'   password (UNI) : BIGINT(20)
+' }
+
+entity "shift_time" as shift_time {
+  +-- ID (PK) : INT(11)
+  +-- shift_date_id (FK) : INT(11)
+  --
+  start_time : TIME
+  end_time : TIME
+}
+
+entity "shift_date" as shift_date {
   +-- ID (PK) : INT(11)
   --
-  work_day : DATE()
-  start_time : TIME()
-  end_time : TIME()
-  type : CHAR(11)
+  work_day : DATE
+  is_attendance : BOOLEAN
 }
 
 entity "employer_shifts" as employer_shifts {
   +-- ID (PK) : INT(11)
   +-- employer_id (FK) : INT(11)
-  +-- shift_data (FK) : INT(11)
+  +-- shift_date_id (FK) : INT(11)
+}
+
+entity "approve_month" as approve_month {
+  +-- ID (PK) : INT(11)
+  --
+  is_approve : BOOLEAN
 }
 
 entity "departments" as departments {
@@ -67,12 +79,13 @@ entity "information" as information {
   content : VARCHAR(255)
 }
 stores -r-{ information
-stores -d-{ managers
-managers --{ employees
+stores -d-{ employees
 employees -l-{ employer_shifts
-shift_dates --{ employer_shifts
+employer_shifts }-u- shift_date
+shift_time --{ shift_date
 employer_skills -l-{ employees
 employer_skills --{ skills
 departments -u-{ employees
+approve_month -l-{ shift_time
 
 @enduml

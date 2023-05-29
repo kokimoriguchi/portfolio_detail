@@ -7,10 +7,6 @@
 このファイルに大まかな制作物の完成予想図とワイヤーフレームを入れ込んでいます。
 使用予定技術も一部入れていますが、具体的ではありません。
 
-## entity.md
-
-エンティティを抜き出したものを記述しています。
-
 ## PRD.md
 
 ブラッシュアップしていく中でこのファイルを仕様書として清書していきます。
@@ -18,4 +14,4 @@
 ## ER
 
 下記テーブルのリレーション示した ER 図になります。
-<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/eb3b3e5c-cf39-afef-0887-3b68c1b24d30.png">
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/43e170b6-4eab-7a43-f911-43e6c1a89510.png">
