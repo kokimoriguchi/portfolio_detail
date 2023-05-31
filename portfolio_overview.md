@@ -25,9 +25,11 @@
 
 - 勤務終了後 1-2 週間ほどかけ少しづつシフト作成している(勤務時間外や休日に作成している)
 - アルバイト含めると 40 人を超える従業員のシフトの紙を全て確認する手間
-- A3 の紙に 40 人 1 ヶ月分のシフトが書かれた紙の見ずらさ。
-- そのかみでは見づらいので単日のシフト表(31 枚)を全て印刷し確認している効率の悪さ
+- 確定したシフトは 1 ヶ月分 40 人の名前と出勤日が書かれた A3 で張り出されるので字が小さく見ずらい。
+- 繁忙期などの時間帯別での各カテゴリーの場所に人員配置できているかの確認でその紙では見づらいので単日のシフト表(31 枚)を全て印刷し確認している効率の悪さ
 - 紙での提出のないアルバイトに連絡を 1 人づつ取らないといけない
+- 誰がどの加工技術を持っているのかが不明確なので、各カテゴリーの加工できる人がいない日がある。
+- Excel を思い通りに使いこなせるわけではないので縦軸の名前の部分を固定できず月末の 31 に向けっていくと名前が見えず場所を覚えながら日付と出勤日を見ていく必要がある。
 
 #### スタッフサイド
 
@@ -51,6 +53,7 @@ API 通信としては axios 使用予定(これで 1 度データの受け渡�
 - マネージャーによるシフトの管理及び確認
 - スタッフによる出勤可能日の提出
 - 確定シフトの確認
+- 各スタッフには可能加工技術を登録でき、その加工できる人がいない日は表示が出る。
 
 <details><summary>機能用件と比機能用件</summary>
 
@@ -131,115 +134,14 @@ MVP として 1 から 6 までの機能でまずは作成を目標にしてい�
 日付内は出勤時間と退勤時間が上下で並ぶ感じで小さめに表記。当日分の予定はカレンダー下に大きく表示する
 <img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/4b37b25b-fbee-45d4-29e8-8d74870dc875.png">
 
-## テーブル
-
-### entity
-
-- 従業員名(employer_name)
-- 管理者名(manager)
-- 管理者番号(manager_number)
-- 従業員パスワード(employer_password)
-- 社員番号(employer_number)
-- 店舗番号(store_number)
-- 店舗パスワード(store_password)
-- 部門(category)
-- 出勤日(work_day)
-- 出勤時間(start_time)
-- 退勤時間(finish_time)
-- 従業員スキル(employer_skill)
-- 変更リクエスト(change_request)
-- お知らせ
-
-### employees table
-
-| column     | date-type  | NULL | key | default | AUTO INCREMENT |
-| ---------- | ---------- | ---- | --- | ------- | -------------- |
-| id         | INT(11)    | NO   | PK  |         | YES            |
-| store_id   | INT(11)    | NO   | FK  |         |                |
-| is_manager | BOOLEAN    | NO   |     |         |                |
-| name       | CHAR(50)   | NO   |     |         |                |
-| number     | INT(11)    | NO   | UNI |         |                |
-| password   | BIGINT(20) | NO   | UNI |         |                |
-
-### employer_shift table
-
-| column        | date-type | NULL | key | default | AUTO INCREMENT |
-| ------------- | --------- | ---- | --- | ------- | -------------- |
-| id            | INT(11)   | NO   | PK  |         | YES            |
-| employer_id   | INT(11)   | NO   | FK  |         |                |
-| shift_data_id | INT(11)   | NO   | FK  |         |                |
-
-### shift_dates table
-
-| column        | date-type | NULL | key | default | AUTO INCREMENT |
-| ------------- | --------- | ---- | --- | ------- | -------------- |
-| id            | INT(11)   | NO   | PK  |         | YES            |
-| work_day      | DATE      | NO   |     |         |                |
-| is_attendance | BOOLEAN   | NO   |     |         |                |
-
-### shift_time table
-
-| column        | date-type | NULL | key | default | AUTO INCREMENT |
-| ------------- | --------- | ---- | --- | ------- | -------------- |
-| shift_date_id | INT(11)   | NO   |     |         |                |
-| start_time    | TIME      | NO   |     |         |                |
-| end_time      | TIME      | NO   |     |         |                |
-
-### approve_month table
-
-| column        | date-type | NULL | key | default | AUTO INCREMENT |
-| ------------- | --------- | ---- | --- | ------- | -------------- |
-| id            | INT(11)   | NO   | PK  |         | YES            |
-| is_approve    | BOOLEAN   | NO   |     |         |                |
-| shift_time_id | INT(11)   | NO   | FK  |         |                |
-
-### departments table
-
-| column      | date-type | NULL | key | default | AUTO INCREMENT |
-| ----------- | --------- | ---- | --- | ------- | -------------- |
-| id          | INT(11)   | NO   | PK  |         | YES            |
-| employer_id | INT(11)   | NO   | FK  |         |                |
-| name        | CHAR(50)  | NO   |     |         |                |
-
-### skills table
-
-| column | date-type | NULL | key | default | AUTO INCREMENT |
-| ------ | --------- | ---- | --- | ------- | -------------- |
-| id     | INT(11)   | NO   | PK  |         | YES            |
-| name   | CHAR(50)  | NO   |     |         |                |
-
-### employer_skills table
-
-| column      | date-type | NULL | key | default | AUTO INCREMENT |
-| ----------- | --------- | ---- | --- | ------- | -------------- |
-| id          | INT(11)   | NO   | PK  |         | YES            |
-| employer_id | INT(11)   | NO   | FK  |         |                |
-| skill_id    | INT(11)   | NO   | FK  |         |                |
-
-### stores table
-
-| column   | date-type | NULL | key | default | AUTO INCREMENT |
-| -------- | --------- | ---- | --- | ------- | -------------- |
-| id       | INT(11)   | NO   | PRI |         | YES            |
-| number   | INT(5)    | NO   |     |         |                |
-| password | INT(11)   | NO   | UNI |         |                |
-| name     | CHAR(50)  | NO   |     |         |                |
-
-### information
-
-| column   | date-type    | NULL | key | default | AUTO INCREMENT |
-| -------- | ------------ | ---- | --- | ------- | -------------- |
-| id       | INT(11)      | NO   | PRI |         | YES            |
-| store_id | INT(11)      | NO   | FK  |         |                |
-| content  | VARCHAR(255) |      |     |         |                |
-
 ## ER 図
 
-<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/43e170b6-4eab-7a43-f911-43e6c1a89510.png">
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/6f8eb34b-b8a4-60cd-eb4a-744690f43d81.png">
+
 </details>
 
 <details><summary>サイトマップ</summary>
-<img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/8a8f00db-69c5-af45-6e63-3dac296afb98.png">
+<img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/9913a3bb-08f0-1d1e-a4eb-4976ebd68595.png">
 </details>
 
 <details><summary>追加機能</summary>
