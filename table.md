@@ -21,14 +21,14 @@
 
 ### employees table
 
-| column     | date-type  | NULL | key | default | AUTO INCREMENT |
-| ---------- | ---------- | ---- | --- | ------- | -------------- |
-| id         | INT(11)    | NO   | PK  |         | YES            |
-| store_id   | INT(11)    | NO   | FK  |         |                |
-| is_manager | BOOLEAN    | NO   |     |         |                |
-| name       | CHAR(50)   | NO   |     |         |                |
-| number     | INT(11)    | NO   | UNI |         |                |
-| password   | BIGINT(20) | NO   | UNI |         |                |
+| column     | date-type | NULL | key | default | AUTO INCREMENT |
+| ---------- | --------- | ---- | --- | ------- | -------------- |
+| id         | INT(11)   | NO   | PK  |         | YES            |
+| store_id   | INT(11)   | NO   | FK  |         |                |
+| is_manager | BOOLEAN   | NO   |     |         |                |
+| name       | CHAR(50)  | NO   |     |         |                |
+| number     | INT(11)   | NO   | UNI |         |                |
+| password   | CHAR(20)  | NO   | UNI |         |                |
 
 <!-- ### managers table
 
@@ -40,7 +40,7 @@
 | number   | INT(11)    | NO   | UNI |         |                |
 | password | BIGINT(20) | NO   | UNI |         |                | -->
 
-### employer_shift table
+### employer_shifts table
 
 | column        | date-type | NULL | key | default | AUTO INCREMENT |
 | ------------- | --------- | ---- | --- | ------- | -------------- |
@@ -56,21 +56,22 @@
 | work_day      | DATE      | NO   |     |         |                |
 | is_attendance | BOOLEAN   | NO   |     |         |                |
 
-### shift_time table
+### shift_times table
 
 | column        | date-type | NULL | key | default | AUTO INCREMENT |
 | ------------- | --------- | ---- | --- | ------- | -------------- |
-| shift_date_id | INT(11)   | NO   |     |         |                |
+| id            | INT(11)   | NO   | PK  |         |                |
+| shift_date_id | INT(11)   | NO   | FK  |         |                |
 | start_time    | TIME      | NO   |     |         |                |
 | end_time      | TIME      | NO   |     |         |                |
 
 ### approve_month table
 
-| column        | date-type | NULL | key | default | AUTO INCREMENT |
-| ------------- | --------- | ---- | --- | ------- | -------------- |
-| id            | INT(11)   | NO   | PK  |         | YES            |
-| is_approve    | BOOLEAN   | NO   |     |         |                |
-| shift_time_id | INT(11)   | NO   | FK  |         |                |
+| column     | date-type | NULL | key | default | AUTO INCREMENT |
+| ---------- | --------- | ---- | --- | ------- | -------------- |
+| id         | INT(11)   | NO   | PK  |         | YES            |
+| is_approve | BOOLEAN   | NO   |     |         |                |
+| store_id   | INT(11)   | NO   | FK  |         |                |
 
 <!-- ### all_shift table
 | column            | date-type | NULL | key | default | AUTO INCREMENT |
@@ -114,10 +115,10 @@
 | -------- | --------- | ---- | --- | ------- | -------------- |
 | id       | INT(11)   | NO   | PRI |         | YES            |
 | number   | INT(5)    | NO   |     |         |                |
-| password | INT(11)   | NO   | UNI |         |                |
+| password | CHAR(20)  | NO   | UNI |         |                |
 | name     | CHAR(50)  | NO   |     |         |                |
 
-### information
+### notices
 
 | column   | date-type    | NULL | key | default | AUTO INCREMENT |
 | -------- | ------------ | ---- | --- | ------- | -------------- |
