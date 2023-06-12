@@ -70,6 +70,8 @@
 | column     | date-type | NULL | key | default | AUTO INCREMENT |
 | ---------- | --------- | ---- | --- | ------- | -------------- |
 | id         | INT(11)   | NO   | PK  |         | YES            |
+| year       | INT(11)   | NO   |     |         |                |
+| month      | INT(11)   | NO   |     |         |                |
 | is_approve | BOOLEAN   | NO   |     |         |                |
 | store_id   | INT(11)   | NO   | FK  |         |                |
 

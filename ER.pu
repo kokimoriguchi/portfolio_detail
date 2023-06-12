@@ -29,12 +29,15 @@ entity "employer_shifts" as employer_shifts {
   +-- ID (PK) : INT(11)
   +-- employer_id (FK) : INT(11)
   +-- shift_date_id (FK) : INT(11)
+  --
 }
 
 entity "approve_months" as approve_months {
   +-- ID (PK) : INT(11)
   +-- store_id (FK) : INT(11)
   --
+  year : INT(11)
+  month : INT(11)
   is_approve : BOOLEAN
 }
 
@@ -56,6 +59,7 @@ entity "employer_skills" as employer_skills {
   +-- ID (PK) : INT(11)
   +-- employer_id (FK) : INT(11)
   +-- skill_id (FK) : INT(11)
+  --
 }
 
 entity "stores" as stores {
@@ -76,10 +80,10 @@ stores -r-{ notices
 stores -d-{ employees
 employees -l-{ employer_shifts
 employer_shifts }-u- shift_dates
-shift_times --{ shift_dates
+shift_times -- shift_dates
 employer_skills -l-{ employees
 employer_skills --{ skills
 departments -u-{ employees
-approve_months --{ stores
+approve_months }-- stores
 
 @enduml
