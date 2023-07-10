@@ -1,15 +1,5 @@
 # オリジナルプロダクト
 
-## 疑問と変更点
-
-### 変更点
-
-- ワイヤーフレームでのフローの細分化。
-- モーダル等のイメージ作成
-- サイトマップ更新での画面遷移フローの見える化
-- ER 図の更新
-- 課題と現状の明確化
-
 ## 概要
 
 ### 【シフト管理アプリ】
@@ -39,7 +29,7 @@
 - 繁忙期などの時間帯別での各カテゴリーの場所に人員配置できているかの確認でその紙では見づらいので単日のシフト表(31 枚)を全て印刷し確認している効率の悪さ
 - 紙での提出のないアルバイトに連絡を 1 人づつ取らないといけない
 - 誰がどの加工技術を持っているのかが不明確なので、各カテゴリーの加工できる人がいない日がある。
-- Excel を思い通りに使いこなせるわけではないので縦軸の名前の部分を固定できず月末の 31 に向けっていくと名前が見えず場所を覚えながら日付と出勤日を見ていく必要がある。
+- Excel を思い通りに使いこなせるわけではないので縦軸の名前の部分を固定できず月末の 31 に向かっていくと名前が見えず場所を覚えながら日付と出勤日を見ていく必要がある。
 
 #### スタッフサイド
 
@@ -52,8 +42,6 @@
 
 Frontend は全て React で行い基本シングルページネーションを意識して作成したい。
 Backend は Rails の API モードにて実行し React に適宜データの受け渡しを行うようにする。
-API 通信としては axios 使用予定(これで 1 度データの受け渡しに成功したことがあるだけでこれ以外触ったことありません。。)
-非同期通信は何度か触った程度ですが取り入れたい。
 下記サイトに感銘を受けプログラミングを学ぶきっかけになった記事なので、大いに参考にしてしまっており良くなければ変更したい。
 [学生の作ったシフトアプリ](https://zenn.dev/pae_26/articles/dba5403eca50f0)
 
@@ -199,9 +187,76 @@ MVP として 1 から 6 までの機能でまずは作成を目標にしてい�
 ## ディレクトリ構成
 
 ```
-shift_app ── frontend(react-create-app)
-          |
-          └── backend(rails new)
+ShiftApp
+├── backend
+│   ├── public
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── src
+│   │   ├── components
+│   │   │   ├── layouts
+│   │   │   │   ├── CommonLayout.tsx
+│   │   │   │   └── Header.tsx
+│   │   │   ├── pages
+│   │   │   │   ├── Home.tsx
+│   │   │   │   ├── SignIn.tsx
+│   │   │   │   └── SignUp.tsx
+│   │   │   └── utils
+│   │   │       └── AlertMessage.tsx
+│   │   ├── interfaces
+│   │   │   └── index.ts
+│   │   ├── lib
+│   │   │   └── api
+│   │   │       ├── auth.ts
+│   │   │       ├── client.ts
+│   │   │       └── test.ts
+│   │   ├── App.tsx
+│   │   ├── index.css
+│   │   ├── index.tsx
+│   │   └── react-app-env.d.ts
+│   ├── .gitignore
+│   ├── package.json
+│   ├── README.md
+│   ├── tsconfig.json
+│   └── yarn.lock
+│
+└── frontend
+    ├── public
+    │   ├── index.html
+    │   └── manifest.json
+    ├── src
+    │   ├── components
+    │   │   ├── data
+    │   │   │   ├── CommonLayout.tsx
+    │   │   │   └── Header.tsx
+    │   │   ├── hooks
+    │   │   │   ├── Home.tsx
+    │   │   │   ├── SignIn.tsx
+    │   │   │   └── SignUp.tsx
+    │   │   └── pages
+    │   │   │   ├── Home.tsx
+    │   │   │   ├── SignIn.tsx
+    │   │   │   └── SignUp.tsx
+    │   ├── interfaces
+    │   │   └── index.ts
+    │   ├── lib
+    │   │   └── api
+    │   │       ├── auth.ts
+    │   │       ├── client.ts
+    │   │       └── test.ts
+    │   ├── App.css
+    │   ├── App.js
+    │   ├── index.css
+    │   └── index.js
+    ├── .gitignore
+    ├── package.json
+    ├── README.md
+    ├── tsconfig.json
+    └── yarn.lock
 ```
 
 </details>
@@ -218,30 +273,28 @@ shift_app ── frontend(react-create-app)
 
 backend
 
-- Ruby 3.1.2
-- Ruby on Rails 7.0.3(API モード)
+- Ruby 3.1.0
+- Ruby on Rails 6.1.5(API モード)
 
 frontend
 
-- React 18.2.0(node 16.15.0)
-- JavaScript ES6
-- HTML5
-- ~~CSS, SCSS~~
-- tailwind
+- React 18.2.0(node 14.17.1)
 
 infrastructure
 
-- ~~Docker 23.0.5 (少し触った程度。書籍 2 冊読了、Youtube 動画で練習した程度)~~
-- AmazonWebServices （まだ全く触ったことがない。デプロイだけであれば 2 週間でなんとかできるのか。）
+- Docker 23.0.5
+- AmazonWebServices
 
 database
 
-- MySQL 5.8
+- MySQL 8.0
 
 その他
 
 React 側の追加ライブラリ/パッケージ
 
+- tailwind
+- react-router-dom
 - axios
 - ESLint
 - prettier
@@ -251,5 +304,7 @@ Rails 側の追加 Gem
 - rack-cors
 - dotenv-rails
 - rubocop
+- bcrypt
+- jwt
 
 </details>
