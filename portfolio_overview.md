@@ -186,78 +186,76 @@ MVP として 1 から 6 までの機能でまずは作成を目標にしてい�
 
 ## ディレクトリ構成
 
-```
+````
 ShiftApp
 ├── backend
-│   ├── public
-│   │   ├── favicon.ico
-│   │   ├── index.html
-│   │   ├── logo192.png
-│   │   ├── logo512.png
-│   │   ├── manifest.json
-│   │   └── robots.txt
-│   ├── src
-│   │   ├── components
-│   │   │   ├── layouts
-│   │   │   │   ├── CommonLayout.tsx
-│   │   │   │   └── Header.tsx
-│   │   │   ├── pages
-│   │   │   │   ├── Home.tsx
-│   │   │   │   ├── SignIn.tsx
-│   │   │   │   └── SignUp.tsx
-│   │   │   └── utils
-│   │   │       └── AlertMessage.tsx
-│   │   ├── interfaces
-│   │   │   └── index.ts
-│   │   ├── lib
-│   │   │   └── api
-│   │   │       ├── auth.ts
-│   │   │       ├── client.ts
-│   │   │       └── test.ts
-│   │   ├── App.tsx
-│   │   ├── index.css
-│   │   ├── index.tsx
-│   │   └── react-app-env.d.ts
-│   ├── .gitignore
-│   ├── package.json
-│   ├── README.md
-│   ├── tsconfig.json
-│   └── yarn.lock
+│   ├── app
+│   │   ├── api/v1
+│   │   │   ├── approve_months_controller.rb
+│   │   │   ├── confirm_shifts_controller.rb
+│   │   │   ├── employee_shifts_controller.rb
+│   │   │   ├── employees_controller.rb
+│   │   │   ├── manager_shifts_controller.rb
+│   │   │   ├── managers_controller.rb
+│   │   │   ├── sessions_controller.rb
+│   │   │   └── stores_controller.rb
 │
-└── frontend
-    ├── public
-    │   ├── index.html
-    │   └── manifest.json
-    ├── src
-    │   ├── components
-    │   │   ├── data
-    │   │   │   ├── CommonLayout.tsx
-    │   │   │   └── Header.tsx
-    │   │   ├── hooks
-    │   │   │   ├── Home.tsx
-    │   │   │   ├── SignIn.tsx
-    │   │   │   └── SignUp.tsx
-    │   │   └── pages
-    │   │   │   ├── Home.tsx
-    │   │   │   ├── SignIn.tsx
-    │   │   │   └── SignUp.tsx
-    │   ├── interfaces
-    │   │   └── index.ts
-    │   ├── lib
-    │   │   └── api
-    │   │       ├── auth.ts
-    │   │       ├── client.ts
-    │   │       └── test.ts
-    │   ├── App.css
-    │   ├── App.js
-    │   ├── index.css
-    │   └── index.js
-    ├── .gitignore
-    ├── package.json
-    ├── README.md
-    ├── tsconfig.json
-    └── yarn.lock
-```
+├── frontend
+│   ├── public
+│   │   ├── index.html
+│   │   └── manifest.json
+│   ├── src
+│   ├── App.css
+│   ├── App.js
+│   ├── components
+│   │   ├── data
+│   │   │   └── Date.jsx
+│   │   ├── hooks
+│   │   │   ├── Alert.jsx
+│   │   │   ├── Auth.jsx
+│   │   │   ├── Axios.jsx
+│   │   │   ├── CalenderRender.jsx
+│   │   │   ├── ConfirmShift.jsx
+│   │   │   ├── ConfirmationModal.jsx
+│   │   │   ├── DarkModeButton.jsx
+│   │   │   ├── EditShiftUpdate.jsx
+│   │   │   ├── EmployeeCreateHook.jsx
+│   │   │   ├── FadeInHook.jsx
+│   │   │   ├── GetConfirmMonth.jsx
+│   │   │   ├── GetShiftDataHook.jsx
+│   │   │   ├── GetSubmitMonth.jsx
+│   │   │   ├── HeaderMoveButton.jsx
+│   │   │   ├── HomeMoveButton.jsx
+│   │   │   ├── InputForm.jsx
+│   │   │   ├── InputFromButton.jsx
+│   │   │   ├── LoginHook.jsx
+│   │   │   ├── ManagerCreateHook.jsx
+│   │   │   ├── Modal.jsx
+│   │   │   ├── ModalManager.jsx
+│   │   │   ├── NavigateButton.jsx
+│   │   │   ├── StoreCreateHook.jsx
+│   │   │   ├── SubmitFlexButton.jsx
+│   │   │   ├── SubmitShift.jsx
+│   │   │   ├── ToLocalStorageHooks.jsx
+│   │   │   ├── useDarkMode.jsx
+│   │   │   └── useGetShiftDataHook.jsx
+│   │   └── pages
+│   │       ├── Calender.jsx
+│   │       ├── ConfirmShiftCalender.jsx
+│   │       ├── EmployeeCreate.jsx
+│   │       ├── EmployeeLogin.jsx
+│   │       ├── EmployeeTop.jsx
+│   │       ├── Footer.jsx
+│   │       ├── Header.jsx
+│   │       ├── Home.jsx
+│   │       ├── ManagerCreate.jsx
+│   │       ├── ManagerLogin.jsx
+│   │       ├── ManagerTop.jsx
+│   │       ├── StoreCreate.jsx
+│   │       └── SubmitCalender.jsx
+│   ├── index.css
+│   └── index.js
+└── tailwind.config.js```
 
 </details>
 
@@ -308,3 +306,4 @@ Rails 側の追加 Gem
 - jwt
 
 </details>
+````
