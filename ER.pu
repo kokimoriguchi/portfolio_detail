@@ -1,89 +1,84 @@
 @startuml ER
 
 entity "employees" as employees {
-  +-- ID (PK) : INT(11)
-  +-- store_id (PK) : INT(11)
+  +-- ID (PK) : bigint
+  +-- store_id (FK) : bigint
   --
-  name : CHAR(50)
-  number (UNI) : INT(11)
-  password (UNI) : CHAR(20)
-  is_manager : BOOLEAN
+  name : string
+  number (UNI) : integer
+  password_digest (UNI) : string
+  is_manager : boolean
 }
 
 entity "shift_times" as shift_times {
-  +-- ID (PK) : INT(11)
-  +-- shift_date_id (FK) : INT(11)
+  +-- ID (PK) : bigint
+  +-- shift_date_id (FK) : bigint
   --
-  start_time : TIME
-  end_time : TIME
+  start_time : time
+  end_time : time
 }
 
 entity "shift_dates" as shift_dates {
-  +-- ID (PK) : INT(11)
+  +-- ID (PK) : bigint
   --
-  work_day : DATE
-  is_attendance : BOOLEAN
+  work_day : date
+  is_attendance : boolean
 }
 
 entity "employer_shifts" as employer_shifts {
-  +-- ID (PK) : INT(11)
-  +-- employer_id (FK) : INT(11)
-  +-- shift_date_id (FK) : INT(11)
+  +-- ID (PK) : bigint
+  +-- employer_id (FK) : bigint
+  +-- shift_date_id (FK) : bigint
   --
 }
 
 entity "approve_months" as approve_months {
-  +-- ID (PK) : INT(11)
-  +-- store_id (FK) : INT(11)
+  +-- ID (PK) : bigint
+  +-- store_id (FK) : bigint
   --
-  year : INT(11)
-  month : INT(11)
-  is_approve : BOOLEAN
+  year : integer
+  month : integer
+  is_approve : boolean
 }
 
 entity "departments" as departments {
-  +-- ID (PK) : INT(11)
-  +-- employer_id (FK) : INT(11)
+  +-- ID (PK) : bigint
+  +-- employer_id (FK) : bigint
   --
-  name : CHAR(50)
+  name : string
 }
 
 entity "skills" as skills {
-  +-- ID (PK) : INT(11)
+  +-- ID (PK) : bigint
+  +-- store_id (FK) : bigint
   --
-  name : CHAR(50)
-  is_processing : BOOLEAN
+  name : string
 }
 
 entity "employer_skills" as employer_skills {
-  +-- ID (PK) : INT(11)
-  +-- employer_id (FK) : INT(11)
-  +-- skill_id (FK) : INT(11)
+  +-- ID (PK) : bigint
+  +-- employer_id (FK) : bigint
+  +-- skill_id (FK) : bigint
   --
+  skill_level : integer
 }
 
 entity "stores" as stores {
-  +-- ID (PK) : INT(11)
+  +-- ID (PK) : integer
   --
-  name : CHAR(50)
-  number : INT(5)
-  password (UNI) : CHAR(20)
+  name : string
+  number : integer
+  password (UNI) : string
 }
 
-entity "notices" as notices {
-  +-- ID (PK) : INT(11)
-  +-- store_id (FK) : INT(11)
-  --
-  content : VARCHAR(255)
-}
-stores -r-{ notices
 stores -d-{ employees
+stores -r-{ skills
 employees -l-{ employer_shifts
 employer_shifts }-u- shift_dates
 shift_times -- shift_dates
 employer_skills -l-{ employees
-employer_skills --{ skills
+employer_skills -u-{ skills
 departments -u-{ employees
-approve_months }-- stores
+approve_months }-d- stores
 
 @enduml
