@@ -41,13 +41,6 @@ entity "approve_months" as approve_months {
   is_approve : boolean
 }
 
-entity "departments" as departments {
-  +-- ID (PK) : bigint
-  +-- employer_id (FK) : bigint
-  --
-  name : string
-}
-
 entity "skills" as skills {
   +-- ID (PK) : bigint
   +-- store_id (FK) : bigint
@@ -78,7 +71,6 @@ employer_shifts }-u- shift_dates
 shift_times -- shift_dates
 employer_skills -l-{ employees
 employer_skills -u-{ skills
-departments -u-{ employees
 approve_months }-d- stores
 
 @enduml
